@@ -1,0 +1,55 @@
+.msg-container {
+    width: 300px;
+    min-height: 300px;
+    background-color: white;
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+}
+
+.msg-content {
+    flex: 85%;
+    font-size: 13px;
+    word-wrap: break-word;
+}
+
+.msg-input {
+    height: 45px;
+}
+
+.msg-incoming {
+    width: 100%;
+    min-height: 30px;
+}
+
+.msg-outgoing {
+    width: 100%;
+    min-height: 30px;
+}
+
+.msg-in {
+    background-color: yellow;
+    width: 70%;
+    height: 100%;
+    margin: 5px;
+    float: left;
+}
+
+.msg-out {
+    background-color: greenyellow;
+    width: 70%;
+    height: 100%;
+    margin: 5px;
+    float: right;
+}
+
+.input-box {
+    margin-left: 5px;
+    width: 70%;
+    height: 80%;
+}
+
+.input-button {
+    width: 15%;
+    height: 80%;
+}
