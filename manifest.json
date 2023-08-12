@@ -1,6 +1,6 @@
 {
   "name": "ChatGPT for video",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Latest version of ChatGPT for video extension",
   "manifest_version": 3,
   "author": "Hangyul Kim",
@@ -8,5 +8,4 @@
     "default_popup": "index.html",
     "default_title": "Latest ChatGPT for video"
   }
-
 }

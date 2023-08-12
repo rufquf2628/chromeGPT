@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>ChatGPT for video</title>
     <link rel="stylesheet" href="chat.css">
+    <script src="popup.js"></script>
 </head>
 <body>
 <div class="main">
@@ -11,7 +12,7 @@
         <div class="msg-content">
             <div class="msg-incoming">
                 <div class="msg-in">
-                    <p>Message from ChatGPT</p>
+                    <p id="msg-response">Message from ChatGPT</p>
                 </div>
             </div>
             <div class="msg-outgoing">
@@ -21,8 +22,8 @@
             </div>
         </div>
         <div class="msg-input">
-            <input id="box" type="text" class="input-box" placeholder="Write message...">
-            <button class="input-button">Send</button>
+            <input id="input-box" type="text" class="input-box" placeholder="Write message...">
+            <button id="input-button" class="input-button">Send</button>
         </div>
     </div>
 </div>
