@@ -1,5 +1,17 @@
 const apiKey = 'OPENAPI';
 
+chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
+    let url = tabs[0].url;
+    const n_url = extractID(url)
+    console.log(n_url)
+});
+
+function extractID(url) {
+    const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+    const match = url.match(regExp);
+    return (match&&match[7].length===11)? match[7] : false;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const sendButton = document.getElementById('input-button');
     const userInput = document.getElementById('input-box');
@@ -34,3 +46,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
