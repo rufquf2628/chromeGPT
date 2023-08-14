@@ -1,9 +1,29 @@
-const apiKey = 'OPENAPI';
+const openai_apiKey = 'OPENAI_KEY';
+const youtube_apiKey = 'YOUTUBE_KEY';
+const client_id = 'CLIENT_ID'
 
-chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
+chrome.tabs.query({active: true, lastFocusedWindow: true}, async tabs => {
     let url = tabs[0].url;
-    const n_url = extractID(url)
-    console.log(n_url)
+    const videoId = extractID(url);
+    let id = '';
+
+    await fetch(`https://www.googleapis.com/youtube/v3/captions?part=snippet&videoId=${videoId}&key=${youtube_apiKey}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            console.log(data.items[0].id)
+            id = data.items[0].id;
+        })
+        .catch(error => console.error('Error fetching captions:', error));
+
+    if (id !== '') {
+        await fetch(`https://youtube.googleapis.com/youtube/v3/captions/${id}?key=[${youtube_apiKey}]`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+            })
+            .catch(error => console.error('Error downloading captions:', error));
+    }
 });
 
 function extractID(url) {
@@ -25,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${apiKey}`,
+                    'Authorization': `Bearer ${openai_apiKey}`,
                 },
                 body: JSON.stringify(
                     { "model": "gpt-3.5-turbo", messages: [{"role": "user", "content": userMessage}]}
@@ -41,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.log(data.choices[0].message.content)
                 })
                 .catch(error => {
-                    console.error('Error:', error);
+                    console.error('Error getting response from GPT:', error);
                 });
         }
     });
